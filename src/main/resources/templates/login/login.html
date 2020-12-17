@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:text="#{login.title}"></title>
+
+
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <!-- App CSS -->
+    <link type="text/css" th:href="@{/login/css/app.css}" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="mdk-drawer-layout js-mdk-drawer-layout" data-fullbleed data-push data-has-scrolling-region>
+        <div class="mdk-drawer-layout__content mdk-header-layout__content--scrollable" style="overflow-y: auto;" data-simplebar data-simplebar-force-enabled="true">
+
+            <div class="container h-vh d-flex justify-content-center align-items-center flex-column">
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                    <h2 th:text="#{login.tip}" class="ml-2 text-bg mb-0"></h2>
+                </div>
+                <div class="row w-100 justify-content-center">
+                    <div class="card card-login mb-3">
+                        <div class="card-body">
+                            <form th:action="@{/user_sign_in}" method="post">
+                                <div class="form-group">
+                                    <label>[[#{login.username}]]</label>
+
+                                    <div class="input-group input-group--inline">
+                                        <div class="input-group-addon">
+                                            <i class="material-icons">account_circle</i>
+                                        </div>
+                                        <input type="text" class="form-control" name="username" value="" placeholder="请输入用户名(中文，英文字母和数字及_  4~10位)">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="d-flex">
+                                        <label>[[#{login.password}]]</label>
+                                        <span class="ml-auto"><a th:href="@{/forgot-password}" th:text="#{login.forget}"></a></span>
+                                    </div>
+
+                                    <div class="input-group input-group--inline">
+                                        <div class="input-group-addon">
+                                            <i class="material-icons">lock_outline</i>
+                                        </div>
+                                        <input type="password" class="form-control" name="password" value="" placeholder="请输入密码(6~20位)">
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                                    <button class="btn btn-primary" th:text="#{login.btn}" type="submit"></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <span class="mr-2" th:text="#{login.noaccount}"></span>
+                    <a th:href="@{/signup}" th:text="#{login.signup}"></a>
+                </div>
+
+                <!-- 多语言 -->
+                <br/>
+                <div class="d-flex justify-content-center">
+                    <a id="zh_CN" th:href="@{/login(language='zh_CN')}" class="ml-auto">中文</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a id="en_US" th:href="@{/login(language='en_US')}" class="ml-auto">English</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // Self Initialize DOM Factory Components
+            domFactory.handler.autoInit();
+        });
+    </script>
+</body>
+
+</html>
